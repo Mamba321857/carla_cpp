@@ -37,13 +37,7 @@ install(FILES ${libcarla_carla_opendrive} DESTINATION include/carla/opendrive)# 
 # 这样在整个项目进行安装过程时，相应的头文件就能被准确放置在期望的位置，
 # 便于其他可能依赖该项目的代码在需要时能顺利找到并包含这些头文件。
 
-# 使用file(GLOB)命令查找位于${libcarla_source_path}/carla/opendrive/parser/目录下所有的.h文件，
-# 并将查找到的这些.h文件的路径列表存储到变量libcarla_carla_opendrive_parser中。
-# GLOB是一种文件通配符查找机制，在这里用于快速定位特定目录下符合指定后缀（.h）的文件。
 file(GLOB libcarla_carla_opendrive_parser "${libcarla_source_path}/carla/opendrive/parser/*.h")
-# 使用install命令将之前通过file(GLOB)查找到并存储在变量libcarla_carla_opendrive_parser中的头文件（.h文件），
-# 安装到目标目录include/carla/opendrive/parser下。这样在整个项目进行安装构建的过程中，
-# 这些头文件就能被放置在正确的位置，方便后续其他代码在编译等操作时能够顺利找到并引用它们。
 install(FILES ${libcarla_carla_opendrive_parser} DESTINATION include/carla/opendrive/parser)
 
 file(GLOB libcarla_carla_profiler_headers "${libcarla_source_path}/carla/profiler/*.h")# 使用CMake中的GLOB命令来查找符合特定模式的文件。
@@ -72,7 +66,13 @@ file(GLOB libcarla_carla_road_element_headers "${libcarla_source_path}/carla/roa
 // 这样在项目整体安装时，相应的头文件就能被准确放置在对应的目录位置，便于其他代码引用这些头文件中的定义来实现相关功能。
 install(FILES ${libcarla_carla_road_element_headers} DESTINATION include/carla/road/element)
 
+# 使用`file(GLOB)`命令在指定路径`${libcarla_source_path}/carla/road/general/`下查找所有以`.h`为后缀的头文件，
+# 然后将找到的这些头文件的完整路径信息存储到名为`libcarla_carla_road_general_headers`的变量中。
+# 这里的`GLOB`操作符使得可以方便地通过通配符来匹配符合特定扩展名要求的一组文件。
 file(GLOB libcarla_carla_road_general_headers "${libcarla_source_path}/carla/road/general/*.h")
+# 通过`install(FILES...)`命令将存储在变量`libcarla_carla_road_general_headers`中的头文件列表，
+# 安装到指定的目标安装目录`include/carla/road/general`下。
+# 这样在进行项目整体安装时，这些头文件就能被放置到相应的正确位置，便于后续代码编译等流程能够顺利引用到它们。
 install(FILES ${libcarla_carla_road_general_headers} DESTINATION include/carla/road/general)
 
 file(GLOB libcarla_carla_road_object_headers "${libcarla_source_path}/carla/road/object/*.h")
