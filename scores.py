@@ -109,7 +109,7 @@ while True:
     issues = response.json()
 
     if not issues:
-        break
+        break #如果 issues 一开始就是空的，那么进入循环后马上就会执行 break 语句，直接跳出循环
 
     for issue in issues:
         # 过滤掉 Pull Requests
